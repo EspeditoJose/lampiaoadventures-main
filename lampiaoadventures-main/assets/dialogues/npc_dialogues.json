@@ -1,0 +1,28 @@
+{
+  "dialogues": {
+    "ze_chapéu": {
+      "name": "Zé do Chapéu",
+      "pages": [
+        "Ôente, Lampião! A Catita foi levada pelos cabras do sertão!",
+        "Cuidado com os cactos e os cangaceiros no caminho!",
+        "Segure [SHIFT] para correr, mas fique de olho no fôlego!"
+      ]
+    },
+    "padre_cicero": {
+      "name": "Padre Cícero",
+      "pages": [
+        "Que a benção do sertão lhe acompanhe, meu filho!",
+        "Restaure suas forças e tome cuidado com os cactos no caminho."
+      ]
+    },
+    "intro_cutscene": {
+      "name": "Narrador do Sertão",
+      "pages": [
+        "No coração do Sertão de Canudos, a lendária gatinha 'Catita' desapareceu!",
+        "Os cabras do Cangaço espalharam mistérios e cactos por toda a caatinga.",
+        "Lampião assume seu chapéu de couro e sua bravura para resgatar a Catita!",
+        "Prepare-se para a grande aventura no Sertão!"
+      ]
+    }
+  }
+}
