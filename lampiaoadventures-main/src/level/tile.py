@@ -14,7 +14,7 @@ class Tile:
     TYPE_COLLECTIBLE = "COLLECTIBLE"
     TYPE_PROP = "PROP"
 
-    def __init__(self, x: float, y: float, width: int = 40, height: int = 40, tile_type: str = TYPE_SOLID, label: str = "", sprite_path: str = ""):
+    def __init__(self, x: float, y: float, width: int = 32, height: int = 32, tile_type: str = TYPE_SOLID, label: str = "", sprite_path: str = "", surface: pygame.Surface = None):
         self.rect = pygame.Rect(int(x), int(y), width, height)
         self.tile_type = tile_type
         self.is_solid = (tile_type == Tile.TYPE_SOLID)
@@ -23,26 +23,31 @@ class Tile:
         self.is_active = True
         self.anim_timer = 0.0
 
-        # Choose default colors based on tile type
-        if tile_type == Tile.TYPE_SOLID:
-            fallback_color = COLOR_TILE
-            default_label = label if label else "DIRT"
-        elif tile_type == Tile.TYPE_HAZARD:
-            fallback_color = COLOR_HAZARD
-            default_label = label if label else "SPIKE"
-        elif tile_type == Tile.TYPE_COLLECTIBLE:
-            fallback_color = COLOR_COLLECTIBLE
-            default_label = label if label else "CATITA"
+        if surface is not None:
+            self.surface = surface
+            if (width, height) != surface.get_size():
+                self.surface = pygame.transform.scale(surface, (width, height))
         else:
-            fallback_color = COLOR_PROP
-            default_label = label if label else "PROP"
+            # Choose default colors based on tile type
+            if tile_type == Tile.TYPE_SOLID:
+                fallback_color = COLOR_TILE
+                default_label = label if label else "DIRT"
+            elif tile_type == Tile.TYPE_HAZARD:
+                fallback_color = COLOR_HAZARD
+                default_label = label if label else "SPIKE"
+            elif tile_type == Tile.TYPE_COLLECTIBLE:
+                fallback_color = COLOR_COLLECTIBLE
+                default_label = label if label else "CATITA"
+            else:
+                fallback_color = COLOR_PROP
+                default_label = label if label else "PROP"
 
-        self.surface = AssetLoader.load_image(
-            relative_path=sprite_path if sprite_path else f"assets/sprites/tiles/{default_label.lower()}.png",
-            size=(width, height),
-            fallback_color=fallback_color,
-            label=default_label
-        )
+            self.surface = AssetLoader.load_image(
+                relative_path=sprite_path if sprite_path else f"assets/sprites/tiles/{default_label.lower()}.png",
+                size=(width, height),
+                fallback_color=fallback_color,
+                label=default_label
+            )
 
     def update(self, dt: float):
         """Update animation for collectibles or props."""

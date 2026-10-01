@@ -16,7 +16,7 @@ class HUD:
 
     def render(self, screen: pygame.Surface, player):
         """Renders HUD overlays at top of screen."""
-        hud_bg = pygame.Rect(8, 8, 220, 58)
+        hud_bg = pygame.Rect(8, 8, 220, 44)
         
         # Background Panel
         panel_surf = pygame.Surface((hud_bg.width, hud_bg.height), pygame.SRCALPHA)
@@ -47,7 +47,7 @@ class HUD:
         # 2. SPRINT STAMINA BAR (Blue/Yellow)
         # ----------------------------------------------------
         stamina_ratio = max(0.0, min(1.0, player.stamina / player.max_stamina))
-        s_bar_y = 30
+        s_bar_y = 28
 
         lbl_stm = self.font.render("FÔLEGO:", True, COLOR_WHITE)
         screen.blit(lbl_stm, (14, s_bar_y - 2))
@@ -62,9 +62,3 @@ class HUD:
         stm_txt = self.small_font.render(stm_str, True, COLOR_WHITE)
         stm_rect = stm_txt.get_rect(center=(bar_x + bar_w // 2, s_bar_y + bar_h // 2))
         screen.blit(stm_txt, stm_rect)
-
-        # ----------------------------------------------------
-        # 3. CATITAS / COINS COUNTER
-        # ----------------------------------------------------
-        coin_lbl = self.small_font.render(f"CATITAS COLETADAS: {player.coins_collected}", True, (255, 215, 0))
-        screen.blit(coin_lbl, (14, 46))
