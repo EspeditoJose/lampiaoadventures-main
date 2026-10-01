@@ -15,6 +15,13 @@
         "Restaure suas forças e tome cuidado com os cactos no caminho."
       ]
     },
+    "bemzedor": {
+      "name": "Bemzedor",
+      "pages": [
+        "Que a benção do sertão lhe acompanhe, meu filho!",
+        "Vou lhe benzer para restaurar suas forças e curar suas feridas."
+      ]
+    },
     "intro_cutscene": {
       "name": "Narrador do Sertão",
       "pages": [

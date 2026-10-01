@@ -58,14 +58,16 @@ STAMINA_DRAIN = 0.75
 STAMINA_RECHARGE = 0.4
 STAMINA_RECHARGE_DELAY = 30
 
-# Level Dimensions (6000x720 horizontal map)
-LEVEL_WIDTH = 6000
+# Level Dimensions (7680x720 horizontal map)
+LEVEL_WIDTH = 7680
 LEVEL_HEIGHT = 720
 TILE_SIZE = 40
 
 # Key Bindings
 KEY_LEFT = [pygame.K_a, pygame.K_LEFT]
 KEY_RIGHT = [pygame.K_d, pygame.K_RIGHT]
+KEY_UP = [pygame.K_w, pygame.K_UP]
+KEY_DOWN = [pygame.K_s, pygame.K_DOWN]
 KEY_JUMP = [pygame.K_w, pygame.K_SPACE, pygame.K_UP]
 KEY_SPRINT = [pygame.K_LSHIFT, pygame.K_RSHIFT]
 KEY_INTERACT = [pygame.K_e]

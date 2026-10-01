@@ -25,8 +25,8 @@ class AudioManager:
         self.current_music_path = None
         self.mixer_available = pygame.mixer.get_init() is not None
 
-    def play_music(self, relative_path: str, loop: int = -1, volume: float = None):
-        """Plays background music safely."""
+    def play_music(self, relative_path: str, loop: int = -1, volume: float = None, fade_ms: int = 0):
+        """Plays background music safely with optional fade-in."""
         if volume is not None:
             self.music_volume = volume
 
@@ -38,13 +38,24 @@ class AudioManager:
             try:
                 pygame.mixer.music.load(full_path)
                 pygame.mixer.music.set_volume(self.music_volume)
-                pygame.mixer.music.play(loop)
+                if fade_ms > 0:
+                    pygame.mixer.music.play(loop, fade_ms=fade_ms)
+                else:
+                    pygame.mixer.music.play(loop)
                 self.current_music_path = relative_path
             except Exception as e:
                 print(f"[AudioManager] Warning: Could not play music '{relative_path}': {e}")
         else:
             # Silence fallback
             pass
+
+    def fadeout_music(self, ms: int = 1500):
+        """Fades out current playing background music smoothly."""
+        if self.mixer_available:
+            try:
+                pygame.mixer.music.fadeout(ms)
+            except Exception:
+                pass
 
     def stop_music(self):
         if self.mixer_available:
